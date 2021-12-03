@@ -28,10 +28,30 @@ def pilot_sub(input):
             elif cmd == 'up':
                 depth -= value
             #print(horz_pos, depth, horz_pos*depth)
-            
+    return horz_pos*depth
 
+def pilot_sub_aim(input):
+    horz_pos = 0
+    depth = 0
+    aim = 0
+    with open(input, 'r') as subctrl:
+        ctrl_list = subctrl.readlines()
+        print(ctrl_list)
+        for ctrl in ctrl_list:
+            cmd,value = ctrl.split()
+            value = int(value)
+            if cmd == 'forward':
+                horz_pos += value
+                depth += aim * value
+            elif cmd == 'down':
+                aim += value
+            elif cmd == 'up':
+                aim -= value
+            #print(horz_pos, depth, horz_pos*depth)
     return horz_pos*depth
 
 
 print(pilot_sub('aoc_02_example.txt'))
 print(pilot_sub('aoc_02_input.txt'))
+print(pilot_sub_aim('aoc_02_example.txt'))
+print(pilot_sub_aim('aoc_02_input.txt'))
