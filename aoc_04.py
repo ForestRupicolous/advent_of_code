@@ -41,6 +41,15 @@ class BBoard:
     def check_board(self):
         return self.check_rows() or self.check_columns()
 
+    def calc_value(self):
+        board_sum = 0
+        for i in range(self.c):
+            for l in range(self.r):
+                if self.board[i][l] != -1:
+                    board_sum += self.board[i][l]
+        return board_sum
+
+
 
 
 def play_bingo(input, called_nums):
@@ -72,7 +81,8 @@ def play_bingo(input, called_nums):
                     print("Found:", num)
                     print(board.check_rows())
                     print(board.check_columns())
-                    return num
+                    board.calc_value()
+                    return board.calc_value(), num, board.calc_value() * num
             else:
                 print("Not finshed after:", num)
     return -1
