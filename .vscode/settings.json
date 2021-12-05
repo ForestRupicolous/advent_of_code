@@ -1,4 +1,13 @@
 {
     "git.ignoreLimitWarning": true,
-    "python.pythonPath": "aoc/bin/python"
+    "python.pythonPath": "aoc/bin/python",
+    "python.testing.unittestArgs": [
+        "-v",
+        "-s",
+        ".",
+        "-p",
+        "test_*.py"
+    ],
+    "python.testing.pytestEnabled": false,
+    "python.testing.unittestEnabled": true
 }
