@@ -9,6 +9,8 @@
 
 class BBoard:
     def __init__(self, r, c):
+        self.r = r
+        self.c = c
         self.board = [[0 for i in range(c)] for j in range(r)]
 
     def add_row(self,row,i):
@@ -16,8 +18,8 @@ class BBoard:
         print(self.board)
     
     def remove_num(self, num):
-        for i in range(len(self.board)):
-            for l in range(len(self.board[i])):                
+        for i in range(self.r):
+            for l in range(self.c):                
                 if self.board[i][l] is num:
                     self.board[i][l] = -1
 
@@ -28,17 +30,26 @@ class BBoard:
         return False
     
     def check_columns(self):
-        for row in self.board:
-            if sum(row) == -5:
-                return True
+        for i in range(self.c):
+            col_sum = 0
+            for l in range(self.r):
+                col_sum += self.board[i][l]
+                if col_sum == -5:
+                    return True
         return False
 
-def play_bingo(input, called_nums ):
+    def check_board(self):
+        return self.check_rows() or self.check_columns()
+
+
+
+def play_bingo(input, called_nums):
     bingoboards = list()
     with open(input, 'r') as boards:
         board_list = boards.readlines()
         print(board_list)
         i = 0
+        #create boards
         cur_board = BBoard(5,5)
         for line in board_list:
             row = line.split()
@@ -50,15 +61,21 @@ def play_bingo(input, called_nums ):
                 i=0
                 cur_board = BBoard(5,5)
                 print('########################')
-
-    bingoboards[1].remove_num(3)
-    bingoboards[1].remove_num(0)
-    bingoboards[1].remove_num(15)
-    bingoboards[1].remove_num(2)
-    bingoboards[1].remove_num(22)
-    print(bingoboards[1].check_rows())
-    print(bingoboards[1].board)
-    return 0
+        for num in called_nums:
+            for board in bingoboards:
+                board.remove_num(num)
+                print(board.board)
+            
+            for board in bingoboards:
+                
+                if board.check_board():
+                    print("Found:", num)
+                    print(board.check_rows())
+                    print(board.check_columns())
+                    return num
+            else:
+                print("Not finshed after:", num)
+    return -1
 
 example_nums = (7,4,9,5,11,17,23,2,0,14,21,24,10,16,13,6,15,25,12,22,18,20,8,19,3,26,1)
 
