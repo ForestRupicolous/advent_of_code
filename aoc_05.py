@@ -36,13 +36,21 @@ def find_vents(input):
             x2= int(x2)
             y2 = int(y2)
             if check_line(x1,y1,x2,y2):
-                print("Line OK:", x1,y1,x2,y2)
+                if x1>x2 or y1 >y2:
+                    x1,x2 = x2,x1
+                    y1,y2 = y2,y1
+                #print("Line OK:", x1,y1,x2,y2)
                 for i in range(x1,x2+1):
                     for l in range(y1,y2+1):
-                        mymap.map[i][l]+=1
+                        mymap.map[l][i]+=1
+            #else:
+                #print("Line diag:", x1,y1,x2,y2)
+    danger_points = 0
+    for line in mymap.map:
+        for field in line:
+            if field > 1:
+                danger_points +=1
 
+    return danger_points
 
-
-        print(mymap.map)
-
-find_vents("aoc_05_example.txt")
+print(find_vents("aoc_05_example.txt"))
