@@ -25,7 +25,7 @@ def check_line(x1,y1,x2,y2):
 
 
 def find_vents(input):
-    mymap = ventmap(10,10)
+    mymap = ventmap(1000,1000)
     with open(input, 'r') as line_list:
         for line in line_list.readlines():
             lstart, lend = line.split(' -> ')
@@ -54,3 +54,4 @@ def find_vents(input):
     return danger_points
 
 print(find_vents("aoc_05_example.txt"))
+print(find_vents("aoc_05_input.txt"))
