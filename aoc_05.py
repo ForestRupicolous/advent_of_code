@@ -44,24 +44,21 @@ def find_vents(input,x,y):
                     for l in range(y1,y2+1):
                         mymap.map[l][i]+=1
             else:
-                
-                if x1>x2 or y1>y2:
+                print("Line:", x1,y1,x2,y2)
+                if x1>x2:
                     x1,x2 = x2,x1
                     y1,y2 = y2,y1
                 print("Line diag:", x1,y1,x2,y2)
-                #print("Line OK:", x1,y1,x2,y2)
 
-                #diag variants, diag up:
                 if x1 < x2 and y1 < y2:
                     print("Diag down")
-                    for i  in range(0,x2-x1):
-                        mymap.map[x1+i][y1+i]+=1
+                    for i in range(0,x2-x1+1):
+                        mymap.map[y1+i][x1+i] += 1
                 #diag down:
                 else:
                     print("Diag up")
-
-
-
+                    for i in range(0,x2-x1+1):
+                        mymap.map[y1-i][x1+i] += 1                   
 
     danger_points = 0
     for line in mymap.map:
