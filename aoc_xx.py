@@ -11,8 +11,8 @@ def part_two(input) -> int:
     return 0
 
 if __name__ == "__main__":
-    example_path = "./aoc_07_example.txt"
-    input_path = "./aoc_07_input.txt"   
+    example_path = "./aoc_xx_example.txt"
+    input_path = "./aoc_xx_input.txt"   
     print("---Part One---")
     print(part_one(example_path))
     print(part_one(input_path))
