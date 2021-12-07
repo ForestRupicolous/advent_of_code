@@ -8,28 +8,28 @@ My solution in Python
 
 Task                                                              | Python Solution             | Comment
 ---                                                               | ---                         | ---
-[Day 01: Sonar Sweep](http://adventofcode.com/2021/day/1)         | [day01.py](aoc_01.py) | 
-[Day 02: Dive!](http://adventofcode.com/2021/day/2)               | [day02.py](aoc_02.py) | 
-[Day 03: Binary Diagnostic](http://adventofcode.com/2021/day/3)   | [day03.py](aoc_03.py) | 
-[Day 04: Giant Squid](http://adventofcode.com/2021/day/4)         | [day04.py](aoc_04.py) | 
-[Day 05: Hydrothermal Venture](http://adventofcode.com/2021/day/5)| [day05.py](aoc_05.py) | 
-[Day 06: Lanternfish](http://adventofcode.com/2021/day/6)         | [day06.py](aoc_06.py) | Pool(count) and shift
-[Day 07](http://adventofcode.com/2021/day/7)                      | [day07.py](python/day07.py) |
-[Day 08](http://adventofcode.com/2021/day/8)                      | [day08.py](python/day08.py) |
-[Day 09](http://adventofcode.com/2021/day/9)                      | [day09.py](python/day09.py) |
-[Day 10](http://adventofcode.com/2021/day/10)                     | [day10.py](python/day10.py) |
-[Day 11](http://adventofcode.com/2021/day/11)                     | [day11.py](python/day11.py) |
-[Day 12](http://adventofcode.com/2021/day/12)                     | [day12.py](python/day12.py) |
-[Day 13](http://adventofcode.com/2021/day/13)                     | [day13.py](python/day13.py) |
-[Day 14](http://adventofcode.com/2021/day/14)                     | [day14.py](python/day14.py) |
-[Day 15](http://adventofcode.com/2021/day/15)                     | [day15.py](python/day15.py) |
-[Day 16](http://adventofcode.com/2021/day/16)                     | [day16.py](python/day16.py) |
-[Day 17](http://adventofcode.com/2021/day/17)                     | [day17.py](python/day17.py) |
-[Day 18](http://adventofcode.com/2021/day/18)                     | [day18.py](python/day18.py) |
-[Day 19](http://adventofcode.com/2021/day/19)                     | [day19.py](python/day19.py) |
-[Day 20](http://adventofcode.com/2021/day/20)                     | [day20.py](python/day20.py) |
-[Day 21](http://adventofcode.com/2021/day/21)                     | [day21.py](python/day21.py) |
-[Day 22](http://adventofcode.com/2021/day/22)                     | [day22.py](python/day22.py) |
-[Day 23](http://adventofcode.com/2021/day/23)                     | [day23.py](python/day23.py) |
-[Day 24](http://adventofcode.com/2021/day/24)                     | [day24.py](python/day24.py) |
-[Day 25](http://adventofcode.com/2021/day/25)                     | [day25.py](python/day25.py) |
+[Day 01: Sonar Sweep](http://adventofcode.com/2021/day/1)         | [aoc_01.py](aoc_01.py) | 
+[Day 02: Dive!](http://adventofcode.com/2021/day/2)               | [aoc_02.py](aoc_02.py) | 
+[Day 03: Binary Diagnostic](http://adventofcode.com/2021/day/3)   | [aoc_03.py](aoc_03.py) | 
+[Day 04: Giant Squid](http://adventofcode.com/2021/day/4)         | [aoc_04.py](aoc_04.py) | 
+[Day 05: Hydrothermal Venture](http://adventofcode.com/2021/day/5)| [aoc_05.py](aoc_05.py) | 
+[Day 06: Lanternfish](http://adventofcode.com/2021/day/6)         | [aoc_06.py](aoc_06.py) | Pool(count) and shift
+[Day 07: The Treachery of Whales](http://adventofcode.com/2021/day/7)                      | [aoc_07.py](aoc_07.py) | boats_pool = defaultdict(int)
+[Day 08](http://adventofcode.com/2021/day/8)                      | [aoc_08.py](aoc_08.py) |
+[Day 09](http://adventofcode.com/2021/day/9)                      | [aoc_09.py](aoc_09.py) |
+[Day 10](http://adventofcode.com/2021/day/10)                     | [aoc_10.py](aoc_10.py) |
+[Day 11](http://adventofcode.com/2021/day/11)                     | [aoc_11.py](aoc_11.py) |
+[Day 12](http://adventofcode.com/2021/day/12)                     | [aoc_12.py](aoc_12.py) |
+[Day 13](http://adventofcode.com/2021/day/13)                     | [aoc_13.py](aoc_13.py) |
+[Day 14](http://adventofcode.com/2021/day/14)                     | [aoc_14.py](aoc_14.py) |
+[Day 15](http://adventofcode.com/2021/day/15)                     | [aoc_15.py](aoc_15.py) |
+[Day 16](http://adventofcode.com/2021/day/16)                     | [aoc_16.py](aoc_16.py) |
+[Day 17](http://adventofcode.com/2021/day/17)                     | [aoc_17.py](aoc_17.py) |
+[Day 18](http://adventofcode.com/2021/day/18)                     | [aoc_18.py](aoc_18.py) |
+[Day 19](http://adventofcode.com/2021/day/19)                     | [aoc_19.py](aoc_19.py) |
+[Day 20](http://adventofcode.com/2021/day/20)                     | [aoc_20.py](aoc_20.py) |
+[Day 21](http://adventofcode.com/2021/day/21)                     | [aoc_21.py](aoc_21.py) |
+[Day 22](http://adventofcode.com/2021/day/22)                     | [aoc_22.py](aoc_22.py) |
+[Day 23](http://adventofcode.com/2021/day/23)                     | [aoc_23.py](aoc_23.py) |
+[Day 24](http://adventofcode.com/2021/day/24)                     | [aoc_24.py](aoc_24.py) |
+[Day 25](http://adventofcode.com/2021/day/25)                     | [aoc_25.py](aoc_25.py) |
