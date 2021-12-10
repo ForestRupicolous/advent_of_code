@@ -12,6 +12,7 @@ def part_one(input) -> int:
     i = 1
     j = 1
     with open(input, 'r') as digits:
+
         lines = digits.readlines()
         dmap = [[99 for i in range(102)] for j in range(len(lines)+2)]       
         for line in lines:
@@ -23,7 +24,7 @@ def part_one(input) -> int:
                 i+=1
             i = 1
             j +=1
-        
+        ##
         for i in range(1,len(d[0])+1):
             col_sum = 0
             for l in range(1,len(lines)+1):
