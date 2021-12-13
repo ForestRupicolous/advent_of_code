@@ -5,15 +5,14 @@
 # https://adventofcode.com/2021/day/11#part2
 #
 def part_one(input) -> int:
+    rows = []
     octo = []
     flashes = 0
     with open(input, 'r') as inp:
-
-        #WHY thsi works and 
-        # rows.append([int(x) for line in inp.readlines() for x in list(line.strip())])
+        #this works
+        octo = ([[int(x) for x in line.strip()] for line in inp.readlines()])
         #NOT?
-        for line in inp.readlines():
-            octo.append([int(x) for x in list(line.strip())])
+
         #delta colum and delta row
         #up, upright,right,downright, down,downleft,left,upleft
         DR = [-1,-1,0,1,1,1,0,-1]
