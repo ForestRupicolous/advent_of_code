@@ -16,21 +16,28 @@ def part_one(input) -> int:
             line.strip()
             coords.append([int(line.split(',')[1]),int(line.split(',')[0])])
 
-        R = 655*2+1#max([_[0] for _ in coords])+1
-        C = 447*2+1#max([_[1] for _ in coords])+1
+        R = 447*2+1 #max([_[0] for _ in coords])+1
+        C = 655*2+1 #max([_[1] for _ in coords])+1
         print('R:',R,'C:',C)
         dmap = [[0 for columns in range(C)] for rows in range(R)]
-        for line in coords:
-            dmap[line[1]][line[0]] = 1
-        #print(dmap)
-        dmap = xfold(dmap,655)  
+        for l in coords:
+            dmap[l[0]][l[1]] = 1
 
+        dmap = xfold(dmap,655)
+        dmap = yfold(dmap,447)  
+        dmap = xfold(dmap,327)  
+        dmap = yfold(dmap,223)  
+        dmap = xfold(dmap,163)  
+        dmap = yfold(dmap,111)  
+        dmap = xfold(dmap,81)  
+        dmap = yfold(dmap,55)  
+        dmap = xfold(dmap,40)  
+        dmap = yfold(dmap,27)  
+        dmap = yfold(dmap,13)  
+        dmap = yfold(dmap,6)   
 
-   #print('####################')
-    #print(dmap)
-   # dmap = xfold(dmap,5)
-    #print('####################')
-   # print(dmap)
+    for line in dmap:
+        print(line)
 
     return sum([sum(i) for i in dmap])
 
