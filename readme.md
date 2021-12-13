@@ -20,7 +20,7 @@ Task                                                              | Python Solut
 [Day 10](http://adventofcode.com/2021/day/10)                     | [aoc_10.py](aoc_10.py) |
 [Day 11](http://adventofcode.com/2021/day/11)                     | [aoc_11.py](aoc_11.py) |
 [Day 12](http://adventofcode.com/2021/day/12)                     | [aoc_12.py](aoc_12.py) |
-[Day 13](http://adventofcode.com/2021/day/13)                     | [aoc_13.py](aoc_13.py) |
+[Day 13](http://adventofcode.com/2021/day/13)                     | [aoc_13.py](aoc_13.py) |List reverse by [::-1]
 [Day 14](http://adventofcode.com/2021/day/14)                     | [aoc_14.py](aoc_14.py) |
 [Day 15](http://adventofcode.com/2021/day/15)                     | [aoc_15.py](aoc_15.py) |
 [Day 16](http://adventofcode.com/2021/day/16)                     | [aoc_16.py](aoc_16.py) |
