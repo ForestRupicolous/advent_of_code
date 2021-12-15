@@ -1,6 +1,6 @@
 {
     "git.ignoreLimitWarning": true,
-    "python.pythonPath": "C:\\Tools\\Python_Playground\\advent_of_code\\aoc\\python.exe",
+    "python.pythonPath": "aoc/bin/python",
     "python.testing.unittestArgs": [
         "-v",
         "-s",

@@ -1,2 +1,3 @@
 /aoc
 *.pyc
+.vscode/settings.json
