@@ -5,9 +5,13 @@
 # https://adventofcode.com/2021/day/7#part2
 #
 def part_one(input) -> int:
+    with open(input, 'r') as f:
+        data = [[int(x) for x in line.strip()] for line in f.readlines()]
     return 0
 
 def part_two(input) -> int:
+    with open(input, 'r') as f:
+        data = [[int(x) for x in line.strip()] for line in f.readlines()]
     return 0
 
 if __name__ == "__main__":
