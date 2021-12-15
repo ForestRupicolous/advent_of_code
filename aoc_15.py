@@ -31,32 +31,30 @@ def part_one(input) -> int:
 
     with open(input, 'r') as f:
         data = [[int(x) for x in line.strip()] for line in f.readlines()]
-        print(data)
+        #big map
+
         #up, right, down, left
         DR = [-1,0,1,0]
         DC = [0,1,0,-1]
         R = len(data)
         C = len(data[0])
-        # Idee:
-        # Min Weg Länge ist R-1 + C-1
-        # Grenze ist MinWeg_länge * 9
-        # calc all min ways, check,
-        # make longer
-        # ...
-        # kürzester Umweg kostet 3 -> 3x1 -> 2 ist immer billiger
-        # 11111
-        # 11511
-        # immer den billigeren weg zuerst
-
+        #print(data)
+        print(data[0])
+        data = [[(data[y][x] + i + l) if (data[y][x] + i + l)<=9 else (data[y][x] + i + l)%9+1 for l in range(5) for x in range(R)] for i in range(5) for y in range(C)]
+  
+        print('##')
+        R = len(data)
+        C = len(data[0])
+        print(len(data), len(data[0]))
+        print(data[49])
         #A* algo
         # https://leetcode.com/problems/shortest-path-in-binary-matrix/discuss/313347/a-search-in-python
         start = (0,0)
         goal = (R-1,C-1)
+        print(goal)
         visted = set()
         came_from = dict()
-        queue = deque()
         frontier = PriorityQueue()
-
 
         def get_cell_value(cell):
             return data[cell[0]][cell[1]]
@@ -77,9 +75,8 @@ def part_one(input) -> int:
                     neighbours.append((rr,cc))
             return neighbours
 
+        print(get_cell_value(goal))
 
-
-        queue.append(start)
         distance = {start: 0}
         frontier.add(start)
         while frontier:
@@ -97,7 +94,7 @@ def part_one(input) -> int:
                 if successor not in distance or distance[cell] + get_cell_value(successor) < distance[successor]:
                     distance[successor] = distance[cell] + get_cell_value(successor)
                     came_from[successor] = cell
-            print(distance)
+            #print(distance)
 
     return -1
 
@@ -111,7 +108,7 @@ if __name__ == "__main__":
     input_path = "./aoc_15_input.txt"   
     print("---Part One---")
     print(part_one(example_path))
-    #print(part_one(input_path))
+   # print(part_one(input_path))
 
     print("---Part Two---")
     #print(part_two(input_path))
