@@ -27,8 +27,6 @@ class PriorityQueue:
 
 
 def part_one(input) -> int:
-
-
     with open(input, 'r') as f:
         data = [[int(x) for x in line.strip()] for line in f.readlines()]
         #big map
