@@ -6,6 +6,26 @@
 #
 from collections import deque
 
+from heapq import heappush, heappop
+
+class PriorityQueue:
+    
+    def __init__(self, iterable=[]):
+        self.heap = []
+        for value in iterable:
+            heappush(self.heap, (0, value))
+    
+    def add(self, value, priority=0):
+        heappush(self.heap, (priority, value))
+    
+    def pop(self):
+        priority, value = heappop(self.heap)
+        return value
+    
+    def __len__(self):
+        return len(self.heap)
+
+
 def part_one(input) -> int:
 
 
@@ -28,10 +48,21 @@ def part_one(input) -> int:
         # 11511
         # immer den billigeren weg zuerst
 
-        #BFS
+        #A* algo
         # https://leetcode.com/problems/shortest-path-in-binary-matrix/discuss/313347/a-search-in-python
+        start = (0,0)
+        goal = (R-1,C-1)
+        visted = set()
+        came_from = dict()
+        queue = deque()
+        frontier = PriorityQueue()
+
+
         def get_cell_value(cell):
             return data[cell[0]][cell[1]]
+
+        def heuristic(cell):
+            return max(abs(goal[0]-cell[0]),abs(goal[1]-cell[1]))
 
         def get_neighbours(cell):
             #up, right, down, left
@@ -46,26 +77,27 @@ def part_one(input) -> int:
                     neighbours.append((rr,cc))
             return neighbours
 
-        start = (0,0)
-        goal = (R-1,C-1)
-        visted = set()
-        queue = deque()
+
 
         queue.append(start)
-        path_len = {start: 0}
-
-        while queue:
-            cell = queue.popleft()
+        distance = {start: 0}
+        frontier.add(start)
+        while frontier:
+            cell = frontier.pop()
             if cell in visted:
                 continue
             if cell == goal:
-                return path_len[cell]
+                return distance[cell]
             visted.add(cell)
-            for neighbour in get_neighbours(cell):
-                if neighbour not in path_len:
-                    path_len[neighbour] = path_len[cell] + get_cell_value(cell)
-                queue.append(neighbour)
-            print(queue)
+            for successor in get_neighbours(cell):
+                frontier.add(
+                    successor,
+                    priority = distance[cell] + 1 + heuristic(successor)
+                )
+                if successor not in distance or distance[cell] + get_cell_value(successor) < distance[successor]:
+                    distance[successor] = distance[cell] + get_cell_value(successor)
+                    came_from[successor] = cell
+            print(distance)
 
     return -1
 
