@@ -26,7 +26,7 @@ class PriorityQueue:
         return len(self.heap)
 
 
-def part_one(input) -> int:
+def part_one_and_two(input, tiles) -> int:
     with open(input, 'r') as f:
         data = [[int(x) for x in line.strip()] for line in f.readlines()]
         #big map
@@ -38,7 +38,7 @@ def part_one(input) -> int:
         C = len(data[0])
         #extend the array in both directions by factor 5 and add value to new array
         # modulo 9 for numbers > 9 to count 1-9 for each cell
-        data = [[(data[y][x] + i + l) if (data[y][x] + i + l)<=9 else (data[y][x] + i + l)%9 for l in range(5) for x in range(R)] for i in range(5) for y in range(C)]
+        data = [[(data[y][x] + i + l) if (data[y][x] + i + l)<=9 else (data[y][x] + i + l)%9 for l in range(tiles) for x in range(R)] for i in range(tiles) for y in range(C)]
 
         R = len(data)
         C = len(data[0])
@@ -101,7 +101,8 @@ def part_two(input) -> int:
 if __name__ == "__main__":
     example_path = "./aoc_15_example.txt"
     input_path = "./aoc_15_input.txt"   
+    print("---Part own---")
+    print('part 1:', part_one_and_two(input_path, 1))
     print("---Part Two---")
-    print(part_one(example_path))
-    print(part_one(input_path))
+    print('part 2:', part_one_and_two(input_path, 5))
     #part one was increased to part to, use original data for part 1
