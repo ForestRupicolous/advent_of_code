@@ -12,16 +12,20 @@ def part_one(input,iterations) -> int:
 
         rep_dict =dict()
         start = data[0]
+
         data = data[2:]
 
         for line in data:
             key,item = line.split(' -> ') 
-            rep_dict[key] = key[0]+item+key[1]
-        
+            rep_dict[key] = item
+        new_string = ''
         for i in range(iterations):
-            for key,item in rep_dict.items():
-                start = start.replace(key, item)
+            for c in range(0,len(start)-1,2):
+                if start[c:c+2] in rep_dict.keys():               
+                    start=''.join([start[:c+1],rep_dict[start[c:c+2]],start[c+1:]])
 
+                #else:
+                 #   new_string += start[c:c+2]
         
   #  print(data)
  #   print(rep_dict)
