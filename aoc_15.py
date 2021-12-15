@@ -38,15 +38,14 @@ def part_one(input) -> int:
         DC = [0,1,0,-1]
         R = len(data)
         C = len(data[0])
-        #print(data)
-        print(data[0])
-        data = [[(data[y][x] + i + l) if (data[y][x] + i + l)<=9 else (data[y][x] + i + l)%9+1 for l in range(5) for x in range(R)] for i in range(5) for y in range(C)]
-  
-        print('##')
+        #extend the array in both directions by factor 5 and add value to new array
+        # modulo 9 for numbers > 9 to count 1-9 for each cell
+        data = [[(data[y][x] + i + l) if (data[y][x] + i + l)<=9 else (data[y][x] + i + l)%9 for l in range(5) for x in range(R)] for i in range(5) for y in range(C)]
+
         R = len(data)
         C = len(data[0])
         print(len(data), len(data[0]))
-        print(data[49])
+
         #A* algo
         # https://leetcode.com/problems/shortest-path-in-binary-matrix/discuss/313347/a-search-in-python
         start = (0,0)
@@ -75,8 +74,6 @@ def part_one(input) -> int:
                     neighbours.append((rr,cc))
             return neighbours
 
-        print(get_cell_value(goal))
-
         distance = {start: 0}
         frontier.add(start)
         while frontier:
@@ -94,8 +91,8 @@ def part_one(input) -> int:
                 if successor not in distance or distance[cell] + get_cell_value(successor) < distance[successor]:
                     distance[successor] = distance[cell] + get_cell_value(successor)
                     came_from[successor] = cell
-            #print(distance)
 
+    # goal not found
     return -1
 
 def part_two(input) -> int:
@@ -106,9 +103,7 @@ def part_two(input) -> int:
 if __name__ == "__main__":
     example_path = "./aoc_15_example.txt"
     input_path = "./aoc_15_input.txt"   
-    print("---Part One---")
-    print(part_one(example_path))
-   # print(part_one(input_path))
-
     print("---Part Two---")
-    #print(part_two(input_path))
+    print(part_one(example_path))
+    print(part_one(input_path))
+    #part one was increased to part to, use original data for part 1
