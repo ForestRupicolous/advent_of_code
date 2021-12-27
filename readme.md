@@ -32,4 +32,4 @@ Task                                                              | Python Solut
 [Day 22](http://adventofcode.com/2021/day/22)                     | [aoc_22.py](aoc_22.py) |
 [Day 23](http://adventofcode.com/2021/day/23)                     | [aoc_23.py](aoc_23.py) |
 [Day 24](http://adventofcode.com/2021/day/24)                     | [aoc_24.py](aoc_24.py) |
-[Day 25](http://adventofcode.com/2021/day/25)                     | [aoc_25.py](aoc_25.py) |
+[Day 25](http://adventofcode.com/2021/day/25)                     | [aoc_25.py](aoc_25.py) |2D list can't be copied by copy() or [:] as it is a list of lists, use deepcopy() from copy
