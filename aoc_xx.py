@@ -1,8 +1,8 @@
 #! python3
-# aoc_07.py
+# aoc_0x.py
 # Advent of code:
-# https://adventofcode.com/2021/day/7
-# https://adventofcode.com/2021/day/7#part2
+# https://adventofcode.com/2022/day/1
+# https://adventofcode.com/2022/day/1#part2
 #
 def part_one(input) -> int:
     with open(input, 'r') as f:
