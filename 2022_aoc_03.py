@@ -1,8 +1,8 @@
 #! python3
-# aoc_0x.py
+# 2022_aoc_03.py
 # Advent of code:
-# https://adventofcode.com/2022/day/1
-# https://adventofcode.com/2022/day/1#part2
+# https://adventofcode.com/2022/day/3
+# https://adventofcode.com/2022/day/3#part2
 #
 def part_one(input) -> int:
     with open(input, 'r') as f:
@@ -22,4 +22,5 @@ if __name__ == "__main__":
     print(part_one(input_path))
 
     print("---Part Two---")
+    print(part_one(example_path))
     print(part_two(input_path))
