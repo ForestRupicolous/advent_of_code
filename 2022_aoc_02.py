@@ -6,7 +6,7 @@
 #
 # %%
 
-
+rps_trsn = dict('A X':0,'A Y':0,'A Z':0,'B X':0,'B Y':0,'B Z':0, 'C X':0, 'C Y':0, 'C Z':0)
 # %%
 def part_one(input = "./aoc_02_example.txt") -> int:
     print("hello world")
