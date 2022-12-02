@@ -22,5 +22,5 @@ if __name__ == "__main__":
     print(part_one(input_path))
 
     print("---Part Two---")
-    print(part_one(example_path))
+    print(part_two(example_path))
     print(part_two(input_path))
