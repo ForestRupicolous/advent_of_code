@@ -19,9 +19,23 @@ def part_one(input) -> int:
     return res
 
 def part_two(input) -> int:
+    res = 0
     with open(input, 'r') as f:
-        data = [[int(x) for x in line.strip()] for line in f.readlines()]
-    return 0
+        data = [line.strip() for line in f.readlines()]
+        for i in range(0,len(data),3):
+            charlist = []
+            elvegroup = data[i:i+3:]
+            #get all that are same in 1 and 2
+            for char in elvegroup[0]:
+                if char in elvegroup[1]:
+                    charlist.append(char)
+            #check 3
+            for char in charlist:
+                if char in elvegroup[2]:  
+                    res += get_value(char)           
+                    break
+
+    return res
 
 def get_value(char):
     if char.isupper():
@@ -37,5 +51,5 @@ if __name__ == "__main__":
     print(part_one(input_path))
 
     print("---Part Two---")
-    #print(part_one(example_path))
-    #print(part_two(input_path))
+    print(part_two(example_path))
+    print(part_two(input_path))
