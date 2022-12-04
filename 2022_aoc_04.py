@@ -6,13 +6,34 @@
 #
 def part_one(input) -> int:
     with open(input, 'r') as f:
-        data = [[int(x) for x in line.strip()] for line in f.readlines()]
-    return 0
+        res = 0
+        data = [line.strip() for line in f.readlines()]
+        for line in data:
+            first, second = line.split(',')
+            if first == second:
+                res +=1
+                continue
+            fstart, fend = first.split('-')
+            sstart, send = second.split('-')
+            if ((int(fstart) >= int(sstart)) and (int(fend) <= int(send))) or ((int(fstart) <= int(sstart)) and (int(fend) >= int(send))):
+                res +=1
+    return res
 
 def part_two(input) -> int:
     with open(input, 'r') as f:
-        data = [[int(x) for x in line.strip()] for line in f.readlines()]
-    return 0
+        res = 0
+        data = [line.strip() for line in f.readlines()]
+        for line in data:
+            first, second = line.split(',')
+            if first == second:
+                res +=1
+                continue
+            fstart, fend = first.split('-')
+            sstart, send = second.split('-')
+            if (int(fstart) >= int(sstart) and int(fstart) <= int(send)) or ((int(fstart) <= int(sstart)) and (int(fend) >= int(sstart))):
+                res +=1
+                continue
+    return res
 
 if __name__ == "__main__":
     example_path = "./aoc_04_example.txt"
