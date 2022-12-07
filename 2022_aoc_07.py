@@ -36,10 +36,17 @@ def part_one(input) -> int:
                 continue
         folder_contents[current_folder] = content
         #replace directories with their content
-        for k,v in folder_contents.items():
-            folder_contents[k] = [folder_contents[item] if type(item) == str else item for item in v]              
- 
-        print(sizes)
+        print(folder_contents)
+        for i in range(10):
+            for k,v in folder_contents.items():
+                if not type(v) == int:
+                    if all([type(x) == int for x in v]):
+                        folder_contents[k] = sum(v)
+                        print(k,sum(v))
+                    else:
+                        folder_contents[k] = [folder_contents[item] if type(item) == str else item for item in v]              
+            
+  
         print(folder_contents)
         #print(sum(folder_contents['a']))
     return 0
