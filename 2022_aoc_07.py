@@ -19,6 +19,7 @@ def part_one(input) -> int:
             f = re.match(r'\$ cd (\w+)',line) #look for folders
             if f:
                 folder_contents[current_folder] = content
+                content = []
                 current_folder = f.groups()[0]
                 print("cd ",current_folder)
                 continue
@@ -31,12 +32,16 @@ def part_one(input) -> int:
             m = re.match(r'(\d+) (\w+\.*\w*)', line) # look for file sizes
             if m:
                 sizes[m.groups()[1]] = int(m.groups()[0])
-                content.append(m.groups()[1])
+                content.append(int(m.groups()[0]))
                 continue
-
-                
+        folder_contents[current_folder] = content
+        #replace directories with their content
+        for k,v in folder_contents.items():
+            folder_contents[k] = [folder_contents[item] if type(item) == str else item for item in v]              
+ 
         print(sizes)
         print(folder_contents)
+        #print(sum(folder_contents['a']))
     return 0
 
 def part_two(input) -> int:
