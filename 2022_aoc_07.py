@@ -10,9 +10,11 @@ import  re
 
 def get_folder_size(folder_contents, element):
     size = 0
-    for e in folder_contents[element]:
+    for i,e in enumerate(folder_contents[element]):
         if type(e) == str:
-            size +=get_folder_size(folder_contents, element+'/'+e)
+            s = get_folder_size(folder_contents, element+'/'+e)
+            folder_contents[element][i] = s
+            size += s
         else:
             size += e
     return size
@@ -54,10 +56,17 @@ def part_one(input) -> int:
                 content.append(int(m.groups()[0]))
                 continue
         folder_contents[current_folder] = content
-        #replace directories with their content
-        print(folder_contents)
         
-    return get_folder_size(folder_contents,'/')
+        print(folder_contents)
+        #replace directories with their content
+        get_folder_size(folder_contents,'/')
+        s = 0
+        for k,v in folder_contents.items():
+            print(k,sum(v),v)
+            if sum(v) <= 100000:
+                s+=sum(v)
+        print(folder_contents)
+    return s
 
 def part_two(input) -> int:
     with open(input, 'r') as f:
@@ -69,7 +78,7 @@ if __name__ == "__main__":
     input_path = "./aoc_07_input.txt"   
     print("---Part One---")
     print(part_one(example_path))
-  # print(part_one(input_path))
+    print(part_one(input_path))
 
     print("---Part Two---")
  #   print(part_two(example_path))
