@@ -57,21 +57,66 @@ def part_one(input) -> int:
                 continue
         folder_contents[current_folder] = content
         
-        print(folder_contents)
         #replace directories with their content
         get_folder_size(folder_contents,'/')
         s = 0
         for k,v in folder_contents.items():
-            print(k,sum(v),v)
-            if sum(v) <= 100000:
-                s+=sum(v)
-        print(folder_contents)
+            f_size = sum(v)
+            folder_contents[k]= f_size
+            if f_size <= 100000:
+                s+=f_size
     return s
 
 def part_two(input) -> int:
     with open(input, 'r') as f:
+        current_folder = '/'
+        ls_active = ''
+        content = []
+        sizes = dict() #size of each thing
+        folder_contents = dict()
         data = [line.strip() for line in f.readlines()]
-    return 0
+        for line in data:
+            l = re.match(r'\$ ls',line) #look for folders
+            if l:
+                ls_active = current_folder
+                continue
+
+            f = re.match(r'\$ cd (\w+)',line) #look for folders
+            if f:
+                folder_contents[ls_active] = content
+                content = []
+                current_folder += '/'+f.groups()[0]
+                continue
+
+            u = re.match(r'\$ cd \.\.',line) #look for folders
+            if u:
+                current_folder = current_folder[:current_folder.rfind('/')]
+                continue
+
+            d = re.match(r'dir (\w+)', line) # look for file sizes
+            if d:
+                content.append(d.groups()[0])
+                continue
+
+            m = re.match(r'(\d+) (\w+\.*\w*)', line) # look for file sizes
+            if m:
+                sizes[m.groups()[1]] = int(m.groups()[0])
+                content.append(int(m.groups()[0]))
+                continue
+        folder_contents[current_folder] = content
+        
+        #replace directories with their content
+        get_folder_size(folder_contents,'/')
+        s = 0
+        for k,v in folder_contents.items():
+            f_size = sum(v)
+            folder_contents[k]= f_size
+            if f_size <= 100000:
+                s+=f_size
+        n_space = 30000000-(70000000-folder_contents['/'])
+        print('Needed space:',n_space)
+        possible = [x for x in folder_contents.values() if x > n_space]
+    return min(possible)
 
 if __name__ == "__main__":
     example_path = "./aoc_07_example.txt"
@@ -81,5 +126,5 @@ if __name__ == "__main__":
     print(part_one(input_path))
 
     print("---Part Two---")
- #   print(part_two(example_path))
-  #  print(part_two(input_path))
+    print(part_two(example_path))
+    print(part_two(input_path))
