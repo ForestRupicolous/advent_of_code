@@ -11,43 +11,36 @@ import  re
 def part_one(input) -> int:
     with open(input, 'r') as f:
         current_folder = '/'
-        content = []
-        sizes = dict() #size of each thing
-        folder_contents = dict()
+        folder_contents = [current_folder]
         data = [line.strip() for line in f.readlines()]
         for line in data:
             f = re.match(r'\$ cd (\w+)',line) #look for folders
             if f:
-                folder_contents[current_folder] = content
-                content = []
-                current_folder = f.groups()[0]
-                print("cd ",current_folder)
+                folder_contents.append(f.groups()[0])
                 continue
 
-            d = re.match(r'dir (\w+)', line) # look for file sizes
+            d = re.match(r'(dir \w+)', line) # look for file sizes
             if d:
-                content.append(d.groups()[0])
+                folder_contents.append(d.groups()[0])
                 continue
 
             m = re.match(r'(\d+) (\w+\.*\w*)', line) # look for file sizes
             if m:
-                sizes[m.groups()[1]] = int(m.groups()[0])
-                content.append(int(m.groups()[0]))
+                folder_contents.append(int(m.groups()[0]))
                 continue
-        folder_contents[current_folder] = content
-        #replace directories with their content
-        print(folder_contents)
-        for i in range(10):
-            for k,v in folder_contents.items():
-                if not type(v) == int:
-                    if all([type(x) == int for x in v]):
-                        folder_contents[k] = sum(v)
-                        print(k,sum(v))
-                    else:
-                        folder_contents[k] = [folder_contents[item] if type(item) == str else item for item in v]              
-            
+        #replace directories with their content       
   
         print(folder_contents)
+        result=['/']
+        for e in folder_contents:
+            if type(e) == str:
+                m = re.match(r'dir (\w+)', e)
+                if m:
+                    print(folder_contents.index(m.groups()[0]))
+                    
+            else:
+                result.append(e)
+    print(result)
         #print(sum(folder_contents['a']))
     return 0
 
