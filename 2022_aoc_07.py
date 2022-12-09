@@ -12,7 +12,7 @@ def get_folder_size(folder_contents, element):
     size = 0
     for e in folder_contents[element]:
         if type(e) == str:
-            size +=get_folder_size(folder_contents, e)
+            size +=get_folder_size(folder_contents, element+'/'+e)
         else:
             size += e
     return size
@@ -20,16 +20,27 @@ def get_folder_size(folder_contents, element):
 def part_one(input) -> int:
     with open(input, 'r') as f:
         current_folder = '/'
+        ls_active = ''
         content = []
         sizes = dict() #size of each thing
         folder_contents = dict()
         data = [line.strip() for line in f.readlines()]
         for line in data:
+            l = re.match(r'\$ ls',line) #look for folders
+            if l:
+                ls_active = current_folder
+                continue
+
             f = re.match(r'\$ cd (\w+)',line) #look for folders
             if f:
-                folder_contents[current_folder] = content
+                folder_contents[ls_active] = content
                 content = []
-                current_folder = f.groups()[0]
+                current_folder += '/'+f.groups()[0]
+                continue
+
+            u = re.match(r'\$ cd \.\.',line) #look for folders
+            if u:
+                current_folder = current_folder[:current_folder.rfind('/')]
                 continue
 
             d = re.match(r'dir (\w+)', line) # look for file sizes
@@ -57,8 +68,8 @@ if __name__ == "__main__":
     example_path = "./aoc_07_example.txt"
     input_path = "./aoc_07_input.txt"   
     print("---Part One---")
-   # print(part_one(example_path))
-    print(part_one(input_path))
+    print(part_one(example_path))
+  # print(part_one(input_path))
 
     print("---Part Two---")
  #   print(part_two(example_path))
