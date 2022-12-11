@@ -16,6 +16,13 @@ def check_cycle(cycle, cur_cycle, reg_x):
         end = True
     return res, cur_cycle, end
 
+def check_pxl(cycle, reg_x):
+    c = cycle % 40
+    if (c >= reg_x -1) and (c <= reg_x +1):
+        return '#'
+    else:
+        return '.'
+
 def part_one(input) -> int:
     with open(input, 'r') as f:
         cycle = 0
@@ -39,7 +46,25 @@ def part_one(input) -> int:
 
 def part_two(input) -> int:
     with open(input, 'r') as f:
-        data = [[int(x) for x in line.strip()] for line in f.readlines()]
+        cycle = 0
+        reg_x = 1        
+        screen = []
+
+        end = False
+        data = [line for line in f.readlines()]
+        for cmd in data:
+            c = cmd.split()[0]
+            if c == 'addx':
+                for i in range(2):
+                    screen.append(check_pxl(cycle, reg_x))
+                    cycle += 1              
+                reg_x += int(cmd.split()[1])
+            else:
+                screen.append(check_pxl(cycle, reg_x))
+                cycle += 1
+        print(len(screen)) 
+        print([''.join(screen[x:x+40]) for x in range(0,250,40)])
+  
     return 0
 
 if __name__ == "__main__":
@@ -50,5 +75,5 @@ if __name__ == "__main__":
     print(part_one(input_path))
 
     print("---Part Two---")
-   # print(part_two(example_path))
-  #  print(part_two(input_path))
+    print(part_two(example_path))
+    print(part_two(input_path))
