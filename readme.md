@@ -15,3 +15,6 @@ Task                                                              | Python Solut
 [Day 06](http://adventofcode.com/2022/day/6)         | [2022_aoc_06.py](2022_aoc_06.py) | Use len(set(data[i:i+n]))== n to find n consecutive distinct characters.
 [Day 07](http://adventofcode.com/2022/day/7)         | [2022_aoc_07.py](2022_aoc_07.py) | Read the whole example!
 [Day 08](http://adventofcode.com/2022/day/8)         | [2022_aoc_08.py](2022_aoc_08.py) | Use x for i in range(r) for x in data[i][c] to get a colum above an 2D array element
+[Day 10](http://adventofcode.com/2022/day/10)         | [2022_aoc_10.py](2022_aoc_10.py) | -
+[Day 12](http://adventofcode.com/2022/day/12)         | [2022_aoc_12.py](2022_aoc_12.py) | Reduce, reuse, recycle - A* would be really worth learing
+
