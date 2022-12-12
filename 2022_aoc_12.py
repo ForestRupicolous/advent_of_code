@@ -1,15 +1,16 @@
 #! python3
-# aoc_15.py
+# 2022_aoc_12.py
 # Advent of code:
-# https://adventofcode.com/2021/day/15
-# https://adventofcode.com/2021/day/15#part2
+# https://adventofcode.com/2022/day/12
+# https://adventofcode.com/2022/day/12#part2
 #
+#reused code of AOC 2021 day 15, train A* alogrithm by using it here.
+#At some time I should learn to code it
 from collections import deque
 
 from heapq import heappush, heappop
 
 class PriorityQueue:
-    
     def __init__(self, iterable=[]):
         self.heap = []
         for value in iterable:
@@ -25,10 +26,9 @@ class PriorityQueue:
     def __len__(self):
         return len(self.heap)
 
-
-def part_one_and_two(input, tiles) -> int:
+def part_one(input) -> int:
     with open(input, 'r') as f:
-        data = [[int(x) for x in line.strip()] for line in f.readlines()]
+        data = [line.strip() for line in f.readlines()]
         #big map
 
         #up, right, down, left
@@ -36,25 +36,27 @@ def part_one_and_two(input, tiles) -> int:
         DC = [0,1,0,-1]
         R = len(data)
         C = len(data[0])
-        #extend the array in both directions by factor 5 and add value to new array
-        # modulo 9 for numbers > 9 to count 1-9 for each cell
-        data = [[(data[y][x] + i + l) if (data[y][x] + i + l)<=9 else (data[y][x] + i + l)%9 for l in range(tiles) for x in range(R)] for i in range(tiles) for y in range(C)]
 
-        R = len(data)
-        C = len(data[0])
-        print(len(data), len(data[0]))
+        print(data, len(data), len(data[0]))
 
         #A* algo
         # https://leetcode.com/problems/shortest-path-in-binary-matrix/discuss/313347/a-search-in-python
-        start = (0,0)
-        goal = (R-1,C-1)
-        print(goal)
-        visted = set()
+        for i,line in enumerate(data):
+            if 'S' in line:
+                start = (i,line.index('S'))
+                #set correct value for start
+                data[start[0]] = data[start[0]].replace('S','a')
+                print(start)
+            if 'E' in line:
+                goal = (i,line.index('E'))
+                data[goal[0]] = data[goal[0]].replace('E','z')
+                print(goal)
+        visited = set()
         came_from = dict()
         frontier = PriorityQueue()
 
         def get_cell_value(cell):
-            return data[cell[0]][cell[1]]
+            return ord(data[cell[0]][cell[1]])
 
         def heuristic(cell):
             return max(abs(goal[0]-cell[0]),abs(goal[1]-cell[1]))
@@ -67,37 +69,46 @@ def part_one_and_two(input, tiles) -> int:
             for i in range(4):
                 rr = cell[0]+DR[i]
                 cc = cell[1]+DC[i]
-                # check if in grid
-                if 0<=rr<R and 0<=cc<C:
-                    neighbours.append((rr,cc))
+                # check if in grid and if climbable, might be better to invert, to climb down
+
+                if (0<=rr<R) and (0<=cc<C):
+                    if(get_cell_value(cell) + 1 >= get_cell_value((rr,cc))):
+                        neighbours.append((rr,cc))
             return neighbours
 
         distance = {start: 0}
         frontier.add(start)
         while frontier:
             cell = frontier.pop()
-            if cell in visted:
+            if cell in visited:
                 continue
             if cell == goal:
                 return distance[cell]
-            visted.add(cell)
+            visited.add(cell)
             for successor in get_neighbours(cell):
                 frontier.add(
                     successor,
                     priority = distance[cell] + 1 + heuristic(successor)
                 )
-                if successor not in distance or distance[cell] + get_cell_value(successor) < distance[successor]:
-                    distance[successor] = distance[cell] + get_cell_value(successor)
+                if successor not in distance or distance[cell] + 1 <= distance[successor]:
+                    distance[successor] = distance[cell] + 1
                     came_from[successor] = cell
 
     # goal not found
     return -1
 
+def part_two(input) -> int:
+    with open(input, 'r') as f:
+        data = [[int(x) for x in line.strip()] for line in f.readlines()]
+    return 0
+
 if __name__ == "__main__":
-    example_path = "./aoc_15_example.txt"
-    input_path = "./aoc_15_input.txt"   
-    print("---Part own---")
-    print('part 1:', part_one_and_two(input_path, 1))
+    example_path = "./aoc_12_example.txt"
+    input_path = "./aoc_12_input.txt"   
+    print("---Part One---")
+    print(part_one(example_path))
+    print(part_one(input_path))
+
     print("---Part Two---")
-    print('part 2:', part_one_and_two(input_path, 5))
-    #part one was increased to part to, use original data for part 1
+    #print(part_two(example_path))
+    #print(part_two(input_path))
